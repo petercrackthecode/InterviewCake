@@ -1,24 +1,29 @@
 // link: https://www.interviewcake.com/question/cpp/stock-price?course=fc1&section=greedy
-int getMaxProfit(const vector<int>& stockPrices)
-{
+int getMaxProfit(const vector<int>& stockPrices)	{
     // calculate the max profit
-    if (stockPrices.size() <= 1) {
+    if (stockPrices.size() <= 1)	{
         throw new std::exception();
     }
     
-    int maxProfit{stockPrices[1] - stockPrices[0]};
+    int maxProfit{INT_MIN},
+        traversalIndex{0},
+        localMin{INT_MAX};
+
     
-    for (int purchaseIndex= 0; purchaseIndex < stockPrices.size() - 1; ++purchaseIndex) {
-        if (stockPrices[purchaseIndex] > 0) {
-            int purchasePrice= stockPrices[purchaseIndex];
-            for (int sellIndex= purchaseIndex + 1; sellIndex < stockPrices.size(); ++sellIndex) {
-                int sellPrice= stockPrices[sellIndex];
-                if (sellPrice - purchasePrice > maxProfit) {
-                    maxProfit= sellPrice - purchasePrice;
-                }
-            }
+    while (traversalIndex < stockPrices.size())	{
+        if (localMin != INT_MAX && stockPrices[traversalIndex] - localMin > maxProfit)	{
+            maxProfit= stockPrices[traversalIndex] - localMin;
         }
+        
+        if (stockPrices[traversalIndex] < localMin)	{
+            localMin= stockPrices[traversalIndex];
+        }
+        
+        ++traversalIndex;
     }
+    
+    // 10, 9, 6, 5, 4, 1
+    // 10, 7, 5, 8, 3
 
     return maxProfit;
 }
