@@ -44,14 +44,32 @@ public:
 
 void colorGraph(const vector<GraphNode*>& graph, const vector<string>& colors)
 {
-    // create a valid coloring for the graph
-    std::map<std::string, bool> availableColors;
+    for (auto node : graph) {
+        const auto& neighbors = node->getNeighbors();
 
-    for (auto color : colors)	{
-    	availableColors[color] = true;
+        if (neighbors.find(node) != neighbors.end())    {
+            ostringstream errorMessage;
+            errorMessage << "Legal coloring impossible for node with loop: " << node->getLabel();
+            throw invalid_argument(errorMessage.str());
+        }
+
+        // get the node's neighbors' colors, as a set
+        // so we can check if a color is illegal in constant time.
+        std::unordered_set<std::string> illegalColors;
+        for (const auto neighbor : neighbors) {
+            if (neighbor->hasColor()) {
+                illegalColors.insert(neighbor->getColor());
+            }
+        }
+
+        // assign the first legal color
+        for (const auto& color : colors)    {
+            if (illegalColors.find(color) == illegalColors(cend())) {
+                node->setColor(color);
+                break;
+            }
+        }
     }
-    
-    
 }
 
 /*
