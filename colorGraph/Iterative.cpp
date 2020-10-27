@@ -64,7 +64,7 @@ void colorGraph(const vector<GraphNode*>& graph, const vector<string>& colors)
 
         // assign the first legal color
         for (const auto& color : colors)    {
-            if (illegalColors.find(color) == illegalColors(cend())) {
+            if (illegalColors.find(color) == illegalColors.cend()) {
                 node->setColor(color);
                 break;
             }
