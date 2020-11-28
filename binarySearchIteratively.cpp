@@ -7,7 +7,7 @@ bool binarySearch(int target, const vector<int> &nums) {
 
 	// If there isn't at least 1 index between floor and ceiling,
 	// we've run out of guesses and the number must not be present
-	while (floorIndex < ceilingIndex) {
+	while (floorIndex <= ceilingIndex) {
 		// find the index ~halfway between the floor and ceiling
 		// we use integer division, so we'll never get a "half index"
 		size_t distance = ceilingIndex - floorIndex;
