@@ -1,3 +1,4 @@
+# https://www.interviewcake.com/question/python3/merging-ranges?course=fc1&section=array-and-string-manipulation
 import functools
 
 meeting_blocks = [(1, 10), (2, 6), (3, 5), (7, 9)]
