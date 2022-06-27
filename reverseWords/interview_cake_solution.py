@@ -1,7 +1,12 @@
 # https://www.interviewcake.com/question/python3/reverse-words?course=fc1&section=array-and-string-manipulation
 
 def reverse_characters(message, left_index, right_index):
-    pass
+    # Walk towards the middle, from both sides
+    while left_index < right_index:
+        # Swap the left char and right char
+        message[left_index], message[right_index] = message[right_index], message[left_index]
+        left_index += 1
+        right_index -= 1
 
 
 def reverse_words(message):
@@ -21,12 +26,3 @@ def reverse_words(message):
             reverse_characters(message, current_word_start_index, i-1)
             # If we haven't exhausted the message our next word's start is one character ahead
             current_word_start_index = i + 1
-
-
-def reverse_characters(message, left_index, right_index):
-    # Walk towards the middle, from both sides
-    while left_index < right_index:
-        # Swap the left char and right char
-        message[left_index], message[right_index] = message[right_index], message[left_index]
-        left_index += 1
-        right_index -= 1
