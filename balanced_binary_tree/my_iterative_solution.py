@@ -5,7 +5,7 @@ MAX_NODE_DEPTH = 0
 MIN_NODE_DEPTH = float('inf')
 
 
-def isLeafNode(node):
+def is_leaf_node(node):
     if not node:
         return False
 
@@ -20,7 +20,7 @@ def is_balanced(tree_root):
       compare MAX_NODE_DEPTH and MIN_NODE_DEPTH with the current depth:
         MAX_NODE_DEPTH = max(MAX_NODE_DEPTH, depth)
         MIN_NODE_DEPTH = min(MIN_NODE_DEPTH, depth)
-    * Have a helper function isLeafNode(popped_node): return True if the poppedNode is a leaf node, otherwise return
+    * Have a helper function is_leaf_node(popped_node): return True if the poppedNode is a leaf node, otherwise return
     False.
     * We have two queues: q1 and q2. Here's our loop algorithm to pass the nodes' and their children between 
     q1 and q2 to do bfs:
@@ -28,7 +28,7 @@ def is_balanced(tree_root):
         if len(q1) > 0:
           while len(q1) > 0:
             popped_node = q1.pop()
-            if isLeafNode(popped_node):
+            if is_leaf_node(popped_node):
               MAX_NODE_DEPTH = max(MAX_NODE_DEPTH, depth)
               MIN_NODE_DEPTH = min(MIN_NODE_DEPTH, depth)
             else:
@@ -39,7 +39,7 @@ def is_balanced(tree_root):
         elif len(q2) > 0:
           while len(q2) > 0:
             popped_node = q2.pop()
-            if isLeafNode(popped_node):
+            if is_leaf_node(popped_node):
               MAX_NODE_DEPTH = max(MAX_NODE_DEPTH, depth)
               MIN_NODE_DEPTH = min(MIN_NODE_DEPTH, depth)
             else:
@@ -52,7 +52,7 @@ def is_balanced(tree_root):
 
     * In the end: return MAX_NODE_DEPTH - MIN_NODE_DEPTH <= 1
     """
-    if not tree_root or isLeafNode(tree_root):
+    if not tree_root or is_leaf_node(tree_root):
         return True
 
     q1, q2 = deque([tree_root]), deque()
@@ -67,7 +67,7 @@ def is_balanced(tree_root):
         if len(q1) > 0:
             while len(q1) > 0:
                 popped_node = q1.pop()
-                if isLeafNode(popped_node):
+                if is_leaf_node(popped_node):
                     MAX_NODE_DEPTH = max(MAX_NODE_DEPTH, depth)
                     MIN_NODE_DEPTH = min(MIN_NODE_DEPTH, depth)
                 else:
@@ -78,7 +78,7 @@ def is_balanced(tree_root):
         elif len(q2) > 0:
             while len(q2) > 0:
                 popped_node = q2.pop()
-                if isLeafNode(popped_node):
+                if is_leaf_node(popped_node):
                     MAX_NODE_DEPTH = max(MAX_NODE_DEPTH, depth)
                     MIN_NODE_DEPTH = min(MIN_NODE_DEPTH, depth)
                 else:
