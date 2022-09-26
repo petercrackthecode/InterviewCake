@@ -23,7 +23,7 @@ def find_repeat(numbers):
     otherwise, move left: right = mid - 1
     Base case: we don't move if left == mid or mid + 1 == right because we've already hit the last possible
     shiftment, so if count(num, left, mid) > count(num, mid+1, right) and left == mid: return mid
-    Likewise for the othercase: count(num, left, mid) < count(num, mid+1, right) and mid+1 == right: return mid
+    Likewise for the other case: count(num, left, mid) < count(num, mid+1, right) and mid+1 == right: return mid
 
     * Wrap the operation above inside a while loop: while left < right:
     """
@@ -48,6 +48,6 @@ def find_repeat(numbers):
     raise Exception("no duplicate!")
 
 
-numbers = [4, 1, 4, 8, 3, 2, 7, 6, 5]
+numbers = [4, 1, 2, 8, 3, 7, 7, 6, 5]
 repeated_number = find_repeat(numbers)
 print(repeated_number)
